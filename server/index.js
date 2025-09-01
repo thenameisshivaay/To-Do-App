@@ -10,7 +10,9 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 
-app.listen(3001,()=>{
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT,()=>{
     console.log("Server is Running")
 })
 
@@ -44,4 +46,5 @@ app.delete('/delete/:id',(req,res)=>{
     TodoModel.findByIdAndDelete({_id:id})
     .then(result=>res.json(result))
     .catch(err => res.json(err))
+
 })
