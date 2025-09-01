@@ -7,7 +7,12 @@ const dotenv=require('dotenv')
 dotenv.config();
 
 const app=express()
-app.use(cors())
+app.use(cors({
+    origin: ['https://todo-e0ceb.web.app'], // your Firebase Hosting URL
+    methods: ['GET','POST','PUT','DELETE'],
+    credentials: true
+}));
+
 app.use(express.json())
 
 const PORT = process.env.PORT || 3001;
@@ -48,3 +53,4 @@ app.delete('/delete/:id',(req,res)=>{
     .catch(err => res.json(err))
 
 })
+
